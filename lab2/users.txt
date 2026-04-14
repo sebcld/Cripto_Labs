@@ -1,0 +1,13 @@
+root
+admin
+guest
+mysql
+user
+administrator
+ftp
+1337
+Minnie
+JOSEPH
+THOMAS
+PABLO
+DANIEL
