@@ -1,0 +1,44 @@
+name: lab5
+
+services:
+  c1:
+    build: ./c1
+    image: lab5-c1
+    container_name: lab5-c1
+    hostname: c1
+    networks: [ssh_net]
+    command: ["sleep", "infinity"]
+
+  c2:
+    build: ./c2
+    image: lab5-c2
+    container_name: lab5-c2
+    hostname: c2
+    networks: [ssh_net]
+    command: ["sleep", "infinity"]
+
+  c3:
+    build: ./c3
+    image: lab5-c3
+    container_name: lab5-c3
+    hostname: c3
+    networks: [ssh_net]
+    command: ["sleep", "infinity"]
+
+  c4-s1:
+    build: ./c4-s1
+    image: lab5-c4-s1
+    container_name: lab5-c4-s1
+    hostname: c4
+    networks:
+      ssh_net:
+        # `s1` resuelve al mismo contenedor que `c4`: es cliente Y servidor.
+        aliases: [s1]
+    cap_add:
+      - NET_ADMIN   # manipular/inspeccionar interfaces
+      - NET_RAW     # tcpdump (captura raw) en eth0 y lo
+
+networks:
+  ssh_net:
+    name: lab5_ssh_net
+    driver: bridge
